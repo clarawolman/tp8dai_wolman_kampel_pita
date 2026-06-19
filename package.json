@@ -1,0 +1,28 @@
+{
+  "name": "tp-dai",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/clarawolman/tp8dai_wolman_kampel_pita#readme",
+  "bugs": {
+    "url": "https://github.com/clarawolman/tp8dai_wolman_kampel_pita/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clarawolman/tp8dai_wolman_kampel_pita.git"
+  },
+  "license": "ISC",
+  "author": "pita, kampel, wolman",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "http-status-codes": "^2.3.0",
+    "nodemon": "^3.1.14",
+    "pg": "^8.22.0"
+  }
+}
