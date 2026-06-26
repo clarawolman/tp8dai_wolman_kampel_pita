@@ -23,11 +23,11 @@ class LogHelper {
             const fecha = new Date().toISOString();
 
         const mensajeError = `
-${fecha}: error - ${errorObject.message}
-Stack Trace:
-${errorObject.stack}
---------------------------------------------------
-`;
+        ${fecha}: error - ${errorObject.message}
+            Stack Trace:
+        ${errorObject.stack}
+        --------------------------------------------------
+        `;
 
         if (this.logToConsoleEnabled) {
             console.log(mensajeError);
