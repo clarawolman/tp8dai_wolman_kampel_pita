@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "feedf7ea-b814-4f24-8262-a9f1b6776311",
+		"name": "TP_Provinces",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get provincies id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/province/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get provinces",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/province",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post province",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"California\",\r\n  \"full_name\": \"State of California\",\r\n  \"latitude\": 36.7783,\r\n  \"longitude\": -119.4179,\r\n  \"display_order\": 24\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/province",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put province",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 24,\r\n    \"name\": \"California Updated\",\r\n    \"full_name\": \"State of California (Updated)\",\r\n    \"latitude\": 36.8,\r\n    \"longitude\": -119.5,\r\n    \"display_order\": 24\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/province",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete province",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/province/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"province",
+						"24"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
