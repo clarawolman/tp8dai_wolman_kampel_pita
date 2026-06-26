@@ -1,22 +1,23 @@
 import { Router } from "express";
+import ProvinceService from "../services/province-service.js";
 
 const router = Router();
-
-let provinces = [];
-let nextId = 1;
+const service = new ProvinceService();
 
 
 // GET /api/province
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+    const provinces = await service.getAllAsync();
+
     res.status(200).json(provinces);
 });
 
 
 // GET /api/province/:id
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = parseInt(req.params.id);
 
-    const province = provinces.find(p => p.id === id);
+    const province = await service.getByIdAsync(id);
 
     if (!province) {
         return res.status(404).send("Provincia no encontrada");
@@ -27,63 +28,42 @@ router.get("/:id", (req, res) => {
 
 
 // POST /api/province
-router.post("/", (req, res) => {
-    const { name, full_name, latitude, longitude, display_order } = req.body;
+router.post("/", async (req, res) => {
+    try {
+        const newProvince = await service.createAsync(req.body);
 
-    if (!name || name.length < 3) {
-        return res.status(400).send("Nombre inválido");
+        res.status(201).json(newProvince);
+    } catch (error) {
+        res.status(400).send(error.message);
     }
-
-    const newProvince = {
-        id: nextId++,
-        name,
-        full_name,
-        latitude,
-        longitude,
-        display_order
-    };
-
-    provinces.push(newProvince);
-
-    res.status(201).json(newProvince);
 });
 
 
 // PUT /api/province
-router.put("/", (req, res) => {
-    const { id, name, full_name, latitude, longitude, display_order } = req.body;
+router.put("/", async (req, res) => {
+    try {
+        const updatedProvince = await service.updateAsync(req.body);
 
-    const province = provinces.find(p => p.id === id);
+        if (!updatedProvince) {
+            return res.status(404).send("Provincia no encontrada");
+        }
 
-    if (!province) {
-        return res.status(404).send("Provincia no encontrada");
+        res.status(201).json(updatedProvince);
+    } catch (error) {
+        res.status(400).send(error.message);
     }
-
-    if (!name || name.length < 3) {
-        return res.status(400).send("Nombre inválido");
-    }
-
-    province.name = name;
-    province.full_name = full_name;
-    province.latitude = latitude;
-    province.longitude = longitude;
-    province.display_order = display_order;
-
-    res.status(201).json(province);
 });
 
 
 // DELETE /api/province/:id
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
     const id = parseInt(req.params.id);
 
-    const index = provinces.findIndex(p => p.id === id);
+    const deleted = await service.deleteByIdAsync(id);
 
-    if (index === -1) {
+    if (!deleted) {
         return res.status(404).send("Provincia no encontrada");
     }
-
-    provinces.splice(index, 1);
 
     res.status(200).send("Provincia eliminada");
 });
